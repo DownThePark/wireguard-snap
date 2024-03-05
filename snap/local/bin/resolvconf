@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "Warning: Updating 'resolv.conf' is not currently supported in this snap!"

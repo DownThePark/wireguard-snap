@@ -1,0 +1,49 @@
+name: wireguard-downthepark
+version: '1.0.20210914'
+summary: Fast, modern, secure kernel VPN tunnel
+description: |
+  Fast, modern, secure kernel VPN tunnel
+
+base: core22
+grade: stable
+confinement: strict
+
+layout:
+  /etc/wireguard:
+    bind: $SNAP_DATA/etc
+
+hooks:
+  install:
+    command-chain:
+      - snap/command-chain/install.sh
+
+apps:
+  wireguard:
+    command: bin/start.sh
+    start-timeout: 30s
+    stop-command: bin/stop.sh
+    stop-timeout: 30s
+    daemon: oneshot
+    plugs: [firewall-control, network, network-bind, network-control]
+  wg:
+    command: bin/wg
+    plugs: [firewall-control, network, network-bind, network-control]
+  wg-quick:
+    command: bin/wg-quick
+    plugs: [firewall-control, network, network-bind, network-control]
+
+parts:
+  wireguard:
+    plugin: dump
+    source-type: local
+    source: snap/local
+    stage-packages:
+      - wireguard
+    override-prime: |
+      craftctl default
+      cp usr/bin/wg bin
+      cp usr/bin/wg-quick bin
+      rm -rf etc
+      rm -rf lib
+      rm -rf usr
+      rm -rf var
