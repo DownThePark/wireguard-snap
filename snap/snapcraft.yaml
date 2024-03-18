@@ -1,4 +1,4 @@
-name: wireguard-downthepark
+name: wireguard-dtp
 version: '1.0.20210914'
 summary: Fast, modern, secure kernel VPN tunnel
 description: |
