@@ -1,7 +1,7 @@
 # WireGuard Snap
 [![wireguard](https://snapcraft.io/wireguard-dtp/badge.svg)](https://snapcraft.io/wireguard-dtp)
 
-This is a community-developed [WireGuard](https://www.wireguard.com/) snap, that basically just repackages the WireGuard package from the Ubuntu package repository.
+This is a community-developed [WireGuard](https://www.wireguard.com/) snap, that repackages the WireGuard package from the Ubuntu package repository.
 
 ## Features
 - Strict confinement
