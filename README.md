@@ -19,7 +19,7 @@ sudo snap connect wireguard-dtp:network-control
 sudo snap connect wireguard-dtp:firewall-control
 ```
 
-Then, drop your `wg0.conf` file under `/var/snap/wireguard-dtp/current/etc`.
+Then, drop your `*.conf` files under `/var/snap/wireguard-dtp/current/etc`.
 
 ```
 sudo cp wg0.conf /var/snap/wireguard-dtp/current/etc
