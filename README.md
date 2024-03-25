@@ -33,6 +33,3 @@ sudo snap restart wireguard-dtp
 
 >[!NOTE]
 >Due to strict confinement, updating DNS in `/etc/resolv.conf` automatically is not supported.
-
-## To Do
-- Support unlimited .conf files (currently only supports `wg0.conf`)

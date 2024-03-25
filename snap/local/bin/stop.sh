@@ -1,5 +1,14 @@
 #!/bin/bash
 
-$SNAP/bin/wg-quick down wg0
+if [ ! -z "$(ls -A $SNAP_DATA/etc)" ] ; then
+  cd $SNAP_DATA/etc
 
-/usr/sbin/ip link delete wg0
+  file_list=(*)
+  trimmed_file_list=("${file_list[@]%.*}")
+
+  for file in ${trimmed_file_list[*]}
+  do
+    $SNAP/bin/wg-quick down $file
+    /usr/sbin/ip link delete $file
+  done
+fi

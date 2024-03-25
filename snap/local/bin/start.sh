@@ -1,15 +1,13 @@
 #!/bin/bash
 
-if [ -f $SNAP_DATA/etc/wg0.conf ]; then
-  $SNAP/bin/wg-quick up wg0
-else
-  echo -e " --- IMPORTANT ---
-Connect this snap to the required interfaces using:
-  > snap connect $SNAP_NAME:network-control
-  > snap connect $SNAP_NAME:firewall-control
-Afterwards, place your wg0.conf file under:
-  $SNAP_DATA/etc
-Finally, restart this snap using:
-  > snap restart $SNAP_NAME
-  "
+if [ ! -z "$(ls -A $SNAP_DATA/etc)" ] ; then
+  cd $SNAP_DATA/etc
+
+  file_list=(*)
+  trimmed_file_list=("${file_list[@]%.*}")
+
+  for file in ${trimmed_file_list[*]}
+  do
+    $SNAP/bin/wg-quick up $file
+  done
 fi
