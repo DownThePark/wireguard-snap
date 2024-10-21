@@ -4,7 +4,7 @@ summary: Fast, modern, secure kernel VPN tunnel
 description: |
   Fast, modern, secure kernel VPN tunnel
 
-base: core22
+base: core24
 grade: stable
 confinement: strict
 
