@@ -23,9 +23,9 @@ hooks:
 apps:
   wireguard:
     command: bin/start.sh
-    start-timeout: 30s
+    start-timeout: 120s
     stop-command: bin/stop.sh
-    stop-timeout: 30s
+    stop-timeout: 120s
     daemon: oneshot
     plugs: [firewall-control, network, network-bind, network-control]
   wg:
