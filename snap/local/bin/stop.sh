@@ -8,7 +8,7 @@ if [ ! -z "$(ls -A $SNAP_DATA/etc)" ] ; then
 
   for file in ${trimmed_file_list[*]}
   do
-    $SNAP/bin/wg-quick down $file
+    $SNAP/usr/bin/wg-quick down $file
     /usr/sbin/ip link delete $file
   done
 fi

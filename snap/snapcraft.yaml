@@ -22,31 +22,28 @@ hooks:
 
 apps:
   wireguard:
+    plugs: [firewall-control, network, network-bind, network-control]
     command: bin/start.sh
     start-timeout: 120s
     stop-command: bin/stop.sh
     stop-timeout: 120s
     daemon: oneshot
-    plugs: [firewall-control, network, network-bind, network-control]
   wg:
-    command: bin/wg
     plugs: [firewall-control, network, network-bind, network-control]
+    command: usr/bin/wg
   wg-quick:
-    command: bin/wg-quick
     plugs: [firewall-control, network, network-bind, network-control]
+    command: usr/bin/wg-quick
 
 parts:
-  wireguard:
+  local:
     plugin: dump
     source-type: local
     source: snap/local
+  wireguard:
+    plugin: nil
     stage-packages:
       - wireguard
-    override-prime: |
-      craftctl default
-      cp usr/bin/wg bin
-      cp usr/bin/wg-quick bin
-      rm -rf etc
-      rm -rf lib
-      rm -rf usr
-      rm -rf var
+    stage:
+      - usr/bin/wg
+      - usr/bin/wg-quick
